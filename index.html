@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSYC 2021 Assignments</title>
+<meta name="description" content="Assignment instructions and data for PSYC 2021 Statistical Methods I, York University, Winter 2026. Course Director: Dr. Naomi Martinez Gutierrez.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+  :root {
+    --bg: #f6f7f7; --panel: #ffffff; --fg: #1d2326; --muted: #5d676c; --line: #dfe3e4;
+    --accent: #1f6f78; --accent-soft: #d5e8ea; --warm: #b4572f; --warm-soft: #f6e4da;
+    --code: #eef2f2;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #121617; --panel: #1a2022; --fg: #e8eced; --muted: #9aa5a9; --line: #2c3437; --accent: #5fb3bc; --accent-soft: #1f3a3d; --warm: #e0916b; --warm-soft: #3a2a22; --code: #222a2c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #121617; --panel: #1a2022; --fg: #e8eced; --muted: #9aa5a9; --line: #2c3437; --accent: #5fb3bc; --accent-soft: #1f3a3d; --warm: #e0916b; --warm-soft: #3a2a22; --code: #222a2c; color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 17px; line-height: 1.55; }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 40px 16px 64px; }
+  header { display: flex; flex-direction: column; gap: 6px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .eyebrow { margin: 0; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.4vw, 44px); line-height: 1.12; }
+  .sub { margin: 0; color: var(--muted); font-size: 15px; }
+  .intro { margin: 12px 0 0; max-width: 70ch; }
+  .jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .jump a { padding: 6px 14px; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 600; }
+  .jump a:hover { border-color: var(--accent); }
+
+  section.asg { margin-top: 44px; }
+  .asg-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }
+  h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: 32px; }
+  .meta { color: var(--muted); font-size: 14.5px; }
+  .why { max-width: 72ch; margin: 14px 0; padding: 12px 16px; background: var(--accent-soft); border-radius: 8px; font-size: 16px; }
+  .why-tag { display: inline-block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: var(--panel); background: var(--accent); border-radius: 3px; padding: 1px 6px; margin-right: 8px; vertical-align: 1px; }
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 12px 0 0; }
+  .skills li { font-size: 14px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); }
+
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; margin-top: 16px; }
+  .card > p:last-child { margin-bottom: 0; }
+  .dl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 12px 16px; border: 1px dashed var(--line); border-radius: 8px; margin: 14px 0 0; font-size: 15px; }
+  .dl a.file { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; text-decoration: none; padding: 4px 12px; border: 1px solid var(--accent); border-radius: 999px; }
+  .dl a.file::before { content: "CSV"; font-size: 10.5px; letter-spacing: .05em; background: var(--accent); color: var(--panel); border-radius: 3px; padding: 1px 4px; }
+  .dl a.file:hover { background: var(--accent-soft); }
+  .q { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .q h3 { margin: 0 0 4px; font-size: 19px; font-weight: 600; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+  .mode { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; }
+  .mode.r { background: var(--accent-soft); color: var(--accent); }
+  .mode.hand { background: var(--warm-soft); color: var(--warm); }
+  ol.parts { list-style: none; padding: 0; margin: 10px 0 0; counter-reset: p; }
+  ol.parts > li { counter-increment: p; display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 4px 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  ol.parts > li:last-child { border-bottom: 0; }
+  ol.parts > li::before { content: counter(p, lower-alpha) ")"; font-weight: 600; color: var(--accent); }
+  .pts { color: var(--muted); font-size: 14px; white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+  .note { font-size: 15px; color: var(--muted); margin: 6px 0 0; }
+  code { font-family: var(--mono); font-size: .88em; background: var(--code); padding: 1px 5px; border-radius: 4px; }
+  i.v { font-family: var(--serif); font-size: 1.05em; }
+  table.data { border-collapse: collapse; margin: 12px 0 4px; font-size: 15px; font-variant-numeric: tabular-nums; }
+  table.data th, table.data td { border: 1px solid var(--line); padding: 6px 12px; text-align: center; }
+  table.data th { background: var(--bg); font-weight: 600; }
+  table.data th[scope=row] { text-align: left; }
+  .tablewrap { overflow-x: auto; }
+  .likert { display: grid; gap: 10px; margin-top: 10px; }
+  .likert-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .scale { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; font-size: 13px; text-align: center; color: var(--muted); }
+  .scale span { padding: 6px 4px; display: flex; flex-direction: column; justify-content: center; line-height: 1.25; border-right: 1px solid var(--line); }
+  .scale span:last-child { border-right: 0; }
+  .total { display: flex; justify-content: flex-end; gap: 16px; margin-top: 14px; font-size: 15px; color: var(--muted); }
+  .total b { color: var(--fg); font-weight: 600; }
+  footer { margin-top: 48px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 14px; color: var(--muted); }
+  @media (max-width: 560px) {
+    ol.parts > li { grid-template-columns: 24px minmax(0, 1fr); }
+    .pts { grid-column: 2; text-align: left; }
+    .scale { font-size: 11.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">PSYC 2021 Statistical Methods I · York University · Winter 2026</p>
+    <h1>Assignments</h1>
+    <p class="sub">Dr. Naomi Martinez Gutierrez · Course Director</p>
+    <p class="intro">The two assignments I gave students in PSYC 2021, shown as they were assigned, with the datasets. Each assignment pairs an analysis in R with a question answered by hand, mirroring what students face on tests, and ends with a short reflection.</p>
+    <nav class="jump" aria-label="Assignments"><a href="#a1">Assignment 1 · 13%</a><a href="#a2">Assignment 2 · 13%</a></nav>
+  </header>
+
+  <section class="asg" id="a1">
+    <div class="asg-head"><h2>Assignment 1</h2><span class="meta">Due March 2 · 13% of final grade</span></div>
+    <p class="why"><span class="why-tag">Design</span>Students choose the graphs they think best suit each variable, then compare the overall trend with the trend within each group, seeing for themselves that a pattern visible within groups can blur when the groups are combined.</p>
+    <ul class="skills"><li>Choosing graphs</li><li>Central tendency &amp; variability</li><li>Scatterplots by group</li><li>Effect sizes</li><li>Confidence intervals</li><li><i>z</i>-test (NHST)</li></ul>
+
+    <div class="card">
+      <p><b>Instructions.</b> Import <code>Assignment1_data.csv</code> into R and name it <code>dat</code>. This file contains anxiety scores of first-year undergraduate students across their first semester at York University. There should be three variables in your dataframe <code>dat</code>: <code>Time</code> (days), <code>Anxiety</code> and <code>Program</code>. There are three levels within <code>Program</code>: Psychology, Biology and Math.</p>
+      <div class="dl"><a class="file" href="data/Assignment1_data.csv" download>Assignment1_data.csv</a><span class="note" style="margin:0">138 students · 3 variables</span></div>
+
+      <div class="q">
+        <h3>Question 1 <span class="mode r">Answered in R</span></h3>
+        <ol class="parts">
+          <li><span>Explore each variable in your dataframe using graphs you think are most appropriate.</span><span class="pts">3 pts</span></li>
+          <li><span>Generate two measures of central tendency and two measures of variability for each continuous variable.</span><span class="pts">4 pts</span></li>
+          <li><span>Graph and describe the relationship between Anxiety and Time (days).</span><span class="pts">2 pts</span></li>
+          <li><span>Graph and describe the relationship between Anxiety and Time (days) separately for each program (using a single plot).</span><span class="pts">4 pts</span></li>
+        </ol>
+      </div>
+
+      <div class="q">
+        <h3>Question 2 <span class="mode hand">Answered by hand</span></h3>
+        <p>It is known that the population mean anxiety score across all first-year undergraduate students is 10 (<i class="v">σ</i> = 5), and that the minimally meaningful effect size (for the unstandardized mean difference) is 2 points. Compare the mean of participants in the Psychology program to the mean for all undergraduates (i.e., 10) using:</p>
+        <ol class="parts">
+          <li><span>An unstandardized mean difference and its interpretation.</span><span class="pts">2 pts</span></li>
+          <li><span>The mean of participants in the Psychology program and its 95% confidence interval (along with a statement on precision).<br><span class="note">Note: <code>qnorm(.05/2, lower.tail = FALSE)</code> = 1.96</span></span><span class="pts">2.5 pts</span></li>
+          <li><span>A standardized mean difference and a statement regarding magnitude (small = .2–.5, medium = .5–.8, large = .8+).</span><span class="pts">2 pts</span></li>
+          <li><span>NHST, including your hypotheses and decisions (use <i class="v">α</i> = .05). You can assume that the anxiety scores of first-year undergraduate students are normally distributed in the population.</span><span class="pts">5 pts</span></li>
+        </ol>
+      </div>
+
+      <div class="q">
+        <h3>Reflection</h3>
+        <p>Minimum 150 words. Please do not use AI for this part of the assignment!</p>
+        <p>Which AI did you use for the assignment and how did you use it? Was it helpful in some areas more than others? (If you did not use AI for the assignment, please reflect on which questions were most complicated and why.)</p>
+      </div>
+      <div class="total"><span>Total: <b>24.5 pts</b></span></div>
+    </div>
+  </section>
+
+  <section class="asg" id="a2">
+    <div class="asg-head"><h2>Assignment 2</h2><span class="meta">Due March 30 · 13% of final grade</span></div>
+    <p class="why"><span class="why-tag">Design</span>Students analyze real data from a randomized controlled trial of online cognitive behavioural therapy for perfectionism among undergraduates. Like researchers, they isolate the treatment group, check whether the assumptions hold, and ask whether scores after therapy fall meaningfully below the clinical threshold, not merely whether the difference is statistically significant.</p>
+    <ul class="skills"><li>Real RCT data</li><li>Subsetting in R</li><li>Checking assumptions</li><li>Effect sizes</li><li>Confidence intervals</li><li>One-sample <i>t</i>-test</li><li>Correlation by hand</li><li>R Markdown</li></ul>
+
+    <div class="card">
+      <div class="q" style="margin-top:0;border-top:0;padding-top:0">
+        <h3>Question 1 <span class="mode r">Answered in R</span></h3>
+        <p class="note" style="margin-top:0">Remember to knit an R Markdown file into either an HTML or PDF for Question 1.</p>
+        <p><b>Instructions.</b> Import <code>Assignment2_data.csv</code> into R and name it <code>perfectionism</code>. This dataset originates from an RCT conducted by Chantal Arpin-Cribbie, which investigated the impact of online Cognitive Behavioural Therapy (CBT) on perfectionism in undergraduate students. (Students received a codebook for this dataset on eClass.)</p>
+        <div class="dl"><a class="file" href="data/Assignment2_data.csv" download>Assignment2_data.csv</a><span class="note" style="margin:0">Also available in R: install the <a href="https://cran.r-project.org/package=negligible">negligible</a> package and run <code>data(perfectionism)</code></span></div>
+        <p style="margin-top:14px">The typical clinical threshold for socially-prescribed perfectionism (spp) is 60. We would like to investigate whether spp scores after CBT (i.e., scores under the variable <code>mpshfpost.spp</code>) are significantly less than the clinical cut-off. (Hint: subset the data to the CBT group first.)</p>
+        <p>Assuming <i class="v">α</i> = .10, find:</p>
+        <ol class="parts">
+          <li><span>Whether the normality assumption is met and why.</span><span class="pts">2 pts</span></li>
+          <li><span>Use effect sizes to explore the magnitude of the effect. Be sure to interpret the magnitude of the effect sizes and include one or two sentences summarizing the effect size results. For Cohen’s <i class="v">d</i>, you can use small = .2–.5, medium = .5–.8, large = .8+.</span><span class="pts">4 pts</span></li>
+          <li><span>The mean spp score after CBT and its 90% confidence interval (along with a statement on precision).</span><span class="pts">2 pts</span></li>
+          <li><span>NHST, including your hypotheses and decisions. You can assume that the socially-prescribed perfectionism scores of undergraduate students are normally distributed in the population.</span><span class="pts">4 pts</span></li>
+        </ol>
+      </div>
+
+      <div class="q">
+        <h3>Question 2 <span class="mode hand">Answered by hand</span></h3>
+        <p>A researcher is interested in the relationship between stress and sleep duration in undergraduate students. More specifically, she is interested in whether there is a negative relationship between stress and sleep duration. She measures stress (0–10) and sleep duration (hours of sleep per night) in 7 students:</p>
+        <div class="tablewrap">
+        <table class="data">
+          <thead><tr><th></th><th>Student 1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Stress</th><td>6</td><td>7</td><td>2</td><td>3</td><td>8</td><td>3</td><td>4</td></tr>
+            <tr><th scope="row">Hours of sleep</th><td>6</td><td>5</td><td>7</td><td>8</td><td>4</td><td>6</td><td>6</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <ol class="parts">
+          <li><span>Create a scatterplot of the relationship between stress and sleep duration (4 points) and interpret the direction of the effect (2 points).</span><span class="pts">6 pts</span></li>
+          <li><span>Calculate the correlation coefficient (6 points) and interpret its magnitude (.1–.3 = small; .3–.5 = moderate; .5+ = large) (1 point).</span><span class="pts">7 pts</span></li>
+          <li><span>Test the correlation coefficient for statistical significance (include the statistical hypotheses, use <i class="v">α</i> = .10). You do not need to calculate the confidence interval.</span><span class="pts">5 pts</span></li>
+        </ol>
+      </div>
+
+      <div class="q">
+        <h3>Reflection</h3>
+        <p>This is the last time you will be using R for this course! Please colour in your responses:</p>
+        <div class="likert">
+          <div class="likert-row"><span>How difficult was it to learn to use R?</span><div class="scale"><span>1<br>Not difficult at all</span><span>2</span><span>3</span><span>4</span><span>5<br>Very difficult</span></div></div>
+          <div class="likert-row"><span>How difficult was it to learn to use R Markdown?</span><div class="scale"><span>1<br>Not difficult at all</span><span>2</span><span>3</span><span>4</span><span>5<br>Very difficult</span></div></div>
+          <div class="likert-row"><span>How valuable was learning R for conducting the analyses?</span><div class="scale"><span>1<br>Not valuable at all</span><span>2</span><span>3</span><span>4</span><span>5<br>Extremely valuable</span></div></div>
+        </div>
+        <p style="margin-top:12px">Please feel free to share additional thoughts on R (if any).</p>
+      </div>
+      <div class="total"><span>Total: <b>30 pts</b></span></div>
+    </div>
+  </section>
+
+  <footer>PSYC 2021 3.0 N · taught Winter 2026 · Course Director: Dr. Naomi Martinez Gutierrez · Department of Psychology, York University</footer>
+</div>
+</body>
+</html>
